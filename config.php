@@ -27,7 +27,7 @@ if(preg_match('/wamp/', $_SERVER['DOCUMENT_ROOT'])) {
 }
 
 	session_start();
-
+	$uri = URI();
 
 
 	if($_SERVER["REQUEST_URI"] != BASE_URL) //Toutes pages sauf l'accueil

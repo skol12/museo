@@ -129,9 +129,6 @@ a {
     text-decoration: none;
 }
 
-a:visited {
-    color: #265778; /* block-normal-text-normal */
-}
 
 dt {
     font-weight: bold;
@@ -173,12 +170,11 @@ dd {
  * --------------------------
 */
 .header {
-     min-height: 80px;
+     min-height: 40px;
      margin: 0;
      color: #333;
      padding: 1em;
      text-align: center;
-     border-bottom: 1px solid #eee;
      background: #fff;
  }
     .header h1 {
@@ -363,6 +359,7 @@ aside {
         .pure-button-secondary {
             color: white;
             border-radius: 4px;
+            padding: .5em 1.5em;
             text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
         }
 
@@ -390,4 +387,7 @@ aside {
 
 .pure-button-small {
     padding: .2em .5em;
+}
+thead{
+    cursor: pointer;
 }

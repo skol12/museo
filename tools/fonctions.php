@@ -59,3 +59,11 @@ function user_verif($login, $password) {
 	}
 	return false; //user invalid ou inexistant
 }
+
+function alert_message($message, $type = "success") {
+	return '<div class="yui3-alert  yui3-alert-'.$type.'">'.$message.'</div>';
+}
+
+function URI() {
+	return explode("?", $_SERVER['REQUEST_URI']);
+}
