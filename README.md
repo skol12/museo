@@ -6,10 +6,10 @@ Importer le fichier du dossier /install
 
 Configuration Apache requise:
 Modules :
-*mod_expires
-*mod_headers
-*mod_rewrite
+* mod_expires
+* mod_headers
+* mod_rewrite
 
 Configuration PHP :
-*short open tag
+* short open tag
 
