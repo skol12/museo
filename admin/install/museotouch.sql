@@ -2,10 +2,10 @@
 -- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Jeu 11 Juillet 2013 à 12:01
--- Version du serveur: 5.6.12-log
--- Version de PHP: 5.4.16
+-- Host: 127.0.0.1
+-- Generation Time: Jul 16, 2013 at 09:25 PM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.3.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,63 +17,119 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `museotouch`
+-- Database: `museotouch`
 --
-CREATE DATABASE IF NOT EXISTS `museotouch` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `museotouch` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `museotouch`;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `expositions`
+-- Table structure for table `expositions`
 --
 
 CREATE TABLE IF NOT EXISTS `expositions` (
   `expositions_id` int(11) NOT NULL AUTO_INCREMENT,
+  `expositions_musee` enum('Lyon','Nantes','','') NOT NULL,
+  `expositions_photo` varchar(100) DEFAULT NULL,
   `expositions_nom_fr` varchar(50) NOT NULL,
   `expositions_nom_en` varchar(50) NOT NULL,
   `expositions_description_fr` varchar(500) NOT NULL,
   `expositions_description_en` varchar(500) NOT NULL,
   `expositions_valid` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'valide = 1',
   PRIMARY KEY (`expositions_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
--- Contenu de la table `expositions`
+-- Dumping data for table `expositions`
 --
 
-INSERT INTO `expositions` (`expositions_id`, `expositions_nom_fr`, `expositions_nom_en`, `expositions_description_fr`, `expositions_description_en`, `expositions_valid`) VALUES
-(1, 'La tribu indienne', 'Indian horde', 'Exposition sur le peuple indien', 'Indian nation exposition', 1),
-(2, 'Navires de France', 'France Boats', 'Exposition française sur les navires', 'French exposition on boats', 1),
-(3, 'expo test 1', 'expo test one', 'test pour l''expo numero 1', 'test for the first expo', 1),
-(4, 'expo test 12345', 'text expo 1', 'Description Française', 'Description Anglaise', 1);
+INSERT INTO `expositions` (`expositions_id`, `expositions_musee`, `expositions_photo`, `expositions_nom_fr`, `expositions_nom_en`, `expositions_description_fr`, `expositions_description_en`, `expositions_valid`) VALUES
+(1, 'Nantes', '51e5b95fa9c7f.png', 'La tribu indienne', 'Indian horde', ' pure-u-1 l-centeredpure-u-1 l-centered pure-u-1 l-centered  pure-u-1 l-centered pure-u-1 l-centered pure-u-1 l-centeredpure-u-1 l-centeredpure-u-1 l-centered q', ' pure-u-1 l-centeredpure-u-1 l-centered pure-u-1 l-centered  pure-u-1 l-centered pure-u-1 l-centered pure-u-1 l-centeredpure-u-1 l-centeredpure-u-1 l-centered q', 1),
+(2, 'Lyon', NULL, 'Navires de France', 'France Boats', 'Exposition française sur les navires', 'French exposition on boats', 1),
+(3, 'Nantes', '', 'expo test 1', 'expo test one', 'test pour l''expo numero 1', 'test for the first expo', 1),
+(4, 'Lyon', NULL, 'expo test 12345', 'text expo 1', 'Description Française', 'Description Anglaise', 1),
+(5, 'Lyon', NULL, 'Nom Français', 'Nom Anglais', 'Description Française', 'Description Anglaise', 1),
+(6, 'Lyon', '51e5a7ede2fc4', 'Nom Français', 'Nom Anglais', 'Description Française', 'Description Anglaisesdq', 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `objets`
+-- Table structure for table `expositions_objets`
+--
+
+CREATE TABLE IF NOT EXISTS `expositions_objets` (
+  `expositions_id` int(11) NOT NULL,
+  `objets_id` int(11) NOT NULL,
+  PRIMARY KEY (`expositions_id`,`objets_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `expositions_objets`
+--
+
+INSERT INTO `expositions_objets` (`expositions_id`, `objets_id`) VALUES
+(1, 1),
+(1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `objets`
 --
 
 CREATE TABLE IF NOT EXISTS `objets` (
   `objets_id` int(11) NOT NULL AUTO_INCREMENT,
+  `objets_photo` varchar(150) DEFAULT NULL,
   `objets_nom_fr` varchar(50) NOT NULL,
   `objets_nom_en` varchar(50) NOT NULL,
   `objets_description_fr` text,
   `objets_description_en` text,
+  `objets_valid` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`objets_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `objets`
+-- Dumping data for table `objets`
 --
 
-INSERT INTO `objets` (`objets_id`, `objets_nom_fr`, `objets_nom_en`, `objets_description_fr`, `objets_description_en`) VALUES
-(1, 'Nom Français', 'Nom Anglais', 'Description Française', 'Description Anglaise');
+INSERT INTO `objets` (`objets_id`, `objets_photo`, `objets_nom_fr`, `objets_nom_en`, `objets_description_fr`, `objets_description_en`, `objets_valid`) VALUES
+(1, '51e5b94544d34.png', 'Nom Français', 'Nom Anglaise', 'Description Françaiseqfs', 'Description Anglaise', 1),
+(2, NULL, 'qd', 'e', 'qdg', 'qgd', 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `paniers`
+--
+
+CREATE TABLE IF NOT EXISTS `paniers` (
+  `paniers_id` int(11) NOT NULL AUTO_INCREMENT,
+  `paniers_token` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `paniers_date_creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `paniers_date_expiration` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `paniers_url` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `paniers_private` tinyint(1) NOT NULL DEFAULT '0',
+  `paniers_password` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`paniers_id`),
+  KEY `baskets_url` (`paniers_url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `paniers_objets`
+--
+
+CREATE TABLE IF NOT EXISTS `paniers_objets` (
+  `paniers_id` int(11) NOT NULL,
+  `objets_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -92,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=204 ;
 
 --
--- Contenu de la table `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`users_id`, `users_admin`, `users_login`, `users_password`, `users_mail`, `users_nom`, `users_prenom`, `users_date`, `users_valid`) VALUES
@@ -138,12 +194,11 @@ INSERT INTO `users` (`users_id`, `users_admin`, `users_login`, `users_password`,
 (147, 0, 'Duncan', '', 'eu.neque.pellentesque@tristiqueneque.edu', NULL, NULL, '2013-06-13 23:51:45', 1),
 (148, 0, 'Hull', '', 'egestas@sociisnatoquepenatibus.net', NULL, NULL, '2013-06-13 23:51:45', 1),
 (149, 0, 'Mendez', '', 'consequat.lectus@Integervulputate.com', NULL, NULL, '2013-06-13 23:51:45', 1),
-(150, 0, 'Jefferson', '', 'et@acmattisornare.co.uk', NULL, NULL, '2013-06-13 23:51:45', 1),
+(150, 0, 'Jefferson', 'qdfgqfgd', 'et@acmattisornare.co.uk', 'gdqs', 'qdg', '2013-06-13 23:51:45', 1),
 (151, 0, 'Roach', '', 'mattis.velit@erat.edu', NULL, NULL, '2013-06-13 23:51:45', 1),
 (152, 0, 'Lynch', '', 'mi@Donec.org', NULL, NULL, '2013-06-13 23:51:45', 1),
 (153, 0, 'Guzman', '', 'molestie@ultrices.com', NULL, NULL, '2013-06-13 23:51:45', 1),
 (154, 0, 'Watts', '', 'tempus.lorem@Etiamlaoreetlibero.ca', NULL, NULL, '2013-06-13 23:51:45', 1),
-(157, 0, 'Callahan', '', 'eu.tempor.erat@necleoMorbi.org', NULL, NULL, '2013-06-13 23:51:45', 1),
 (158, 0, 'Holcomb', '', 'nisi.Cum@luctusCurabituregestas.org', NULL, NULL, '2013-06-13 23:51:45', 1),
 (159, 0, 'Chavez', '', 'adipiscing.elit@velitPellentesqueultricies.ca', NULL, NULL, '2013-06-13 23:51:45', 1),
 (160, 0, 'Haley', '', 'lorem.Donec@pedemalesuadavel.co.uk', NULL, NULL, '2013-06-13 23:51:45', 1),
@@ -180,7 +235,6 @@ INSERT INTO `users` (`users_id`, `users_admin`, `users_login`, `users_password`,
 (198, 0, 'Dillard', '', 'elit@augue.com', NULL, NULL, '2013-06-13 23:51:46', 1),
 (199, 0, 'Davenport', '', 'Praesent@cubiliaCurae;Phasellus.net', NULL, NULL, '2013-06-13 23:51:46', 1),
 (200, 0, 'Guerra', '', 'diam.dictum.sapien@cursus.org', NULL, NULL, '2013-06-13 23:51:46', 1),
-(201, 0, 'Burnetttttttt', 'password', 'interdum@arcueu.org', NULL, NULL, '2013-07-03 18:02:01', 1),
 (202, 0, 'Small', '', 'adipiscing@imperdietullamcorperDuis.com', NULL, NULL, '2013-06-13 23:51:46', 1),
 (203, 0, 'Herve', 'password', 'herve@gmail.com', 'Dupont', 'Herve', '0000-00-00 00:00:00', 1);
 
