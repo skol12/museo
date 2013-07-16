@@ -13,6 +13,8 @@ if(preg_match('/wamp/', $_SERVER['DOCUMENT_ROOT'])) {
 	define('DB', '127.0.0.1');
 }
 
+define('DIR_PHOTO', '/assets/img/objets/');
+define('DIR_PHOTO_OBJETS', DIR_PHOTO.'objets/');
 
 $db = connect(); // http://www.notorm.com/ beaucoup d'example sur : http://sql-cross-queries.freexit.eu/
 
