@@ -16,8 +16,11 @@ if(preg_match('/wamp/', $_SERVER['DOCUMENT_ROOT'])) {
 	define('DB_USER', 'root');
 	define('DB_PASSWORD', '');
 	define('DB', '127.0.0.1');
-} 
+}
 
+define('DIR_PHOTO', BASE_URL."assets/img/");
+define('DIR_PHOTO_OBJETS', DIR_PHOTO."objets/");
+define('DIR_PHOTO_EXPOS', DIR_PHOTO."expositions/");
 
 	session_start();
 	$uri = URI();
@@ -47,12 +50,7 @@ if(preg_match('/wamp/', $_SERVER['DOCUMENT_ROOT'])) {
 				"nom" => 'Administration',
 				"href" => "administration",
 				"level_required" => 0,
-				"active" => 'administration' ),
-		$link3 = array(
-				"nom" => 'Front Office',
-				"href" => "../front",
-				"level_required" => 0,
-				"active" => 'front' )
+				"active" => 'administration' )
 				);
 
 	$menu_links_administration = array(
@@ -60,15 +58,15 @@ if(preg_match('/wamp/', $_SERVER['DOCUMENT_ROOT'])) {
 				"nom" => 'Utilisateurs',
 				"href" => "administration/users",
 				"level_required" => 0,
-				"active" => 'users' ),
+				"active" => 'user-liste' ),
 		$link2 = array(
 				"nom" => 'Droits',
 				"href" => "administration/droits",
 				"level_required" => 0,
-				"active" => 'droits' ),
+				"active" => 'droit-liste' ),
 
 	);
-	
+
 	$menu_links_exposition = array(
 		$link1 = array(
 				"nom" => 'Expositions',
@@ -82,7 +80,7 @@ if(preg_match('/wamp/', $_SERVER['DOCUMENT_ROOT'])) {
 				"active" => 'objet-liste' ),
 	);
 
-	
+
 
 
 	$active = "";

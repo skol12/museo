@@ -5,7 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title><?=BRAND?> | Admin</title>
         <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.0/pure-min.css">
         <link rel="stylesheet" href="<?=BASE_URL?>assets/css/cssextras.css">
         <link rel="stylesheet" href="<?=BASE_URL?>assets/css/font-awesome.min.css">
 		<link rel="stylesheet" href="<?=BASE_URL?>assets/css/pure-min.css">

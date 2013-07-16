@@ -1,64 +1,24 @@
 [
     {
-        "name": "vrana/notorm",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/vrana/notorm.git",
-            "reference": "1ada05874f99d491568ab252b9364c6fbbc9f13d"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/vrana/notorm/zipball/1ada05874f99d491568ab252b9364c6fbbc9f13d",
-            "reference": "1ada05874f99d491568ab252b9364c6fbbc9f13d",
-            "shasum": ""
-        },
-        "time": "2013-01-23 11:05:23",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "files": [
-                "NotORM.php"
-            ]
-        },
-        "notification-url": "http://packagist.org/downloads/",
-        "license": [
-            "Apache-2.0",
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "Jakub Vrána",
-                "homepage": "http://www.vrana.cz/"
-            }
-        ],
-        "description": "NotORM is a PHP library for simple working with data in the database.",
-        "homepage": "http://www.notorm.com/",
-        "keywords": [
-            "database",
-            "dbal"
-        ]
-    },
-    {
         "name": "slim/slim",
-        "version": "2.2.0",
-        "version_normalized": "2.2.0.0",
+        "version": "2.3.0",
+        "version_normalized": "2.3.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/codeguy/Slim",
-            "reference": "2.2.0"
+            "url": "https://github.com/codeguy/Slim.git",
+            "reference": "2.3.0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://github.com/codeguy/Slim/archive/2.2.0.zip",
-            "reference": "2.2.0",
+            "url": "https://api.github.com/repos/codeguy/Slim/zipball/2.3.0",
+            "reference": "2.3.0",
             "shasum": ""
         },
         "require": {
+            "ext-mcrypt": "*",
             "php": ">=5.3.0"
         },
-        "time": "2012-12-13 02:15:50",
+        "time": "2013-07-14 19:48:52",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -83,6 +43,98 @@
             "microframework",
             "rest",
             "router"
+        ]
+    },
+    {
+        "name": "sybio/image-workshop",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Sybio/ImageWorkshop.git",
+            "reference": "2.0.x"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Sybio/ImageWorkshop/zipball/2.0.x",
+            "reference": "2.0.x",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2013-06-18 08:58:44",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "PHPImageWorkshop": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Clément Guillemain",
+                "homepage": "http://clementguillemain.fr",
+                "role": "Developer / Freelancer"
+            }
+        ],
+        "description": "Powerful PHP class using GD library to work easily with images including layer notion (like Photoshop or GIMP)",
+        "homepage": "http://phpimageworkshop.com",
+        "keywords": [
+            "class",
+            "crop",
+            "gd",
+            "image",
+            "library",
+            "resize",
+            "rotate",
+            "thumbnail",
+            "watermark"
+        ]
+    },
+    {
+        "name": "vrana/notorm",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/vrana/notorm.git",
+            "reference": "d40e05febaa2defbde59081f7e0c73e8397f4c41"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/vrana/notorm/zipball/d40e05febaa2defbde59081f7e0c73e8397f4c41",
+            "reference": "d40e05febaa2defbde59081f7e0c73e8397f4c41",
+            "shasum": ""
+        },
+        "time": "2013-07-10 16:58:55",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "files": [
+                "NotORM.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0",
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Jakub Vrána",
+                "homepage": "http://www.vrana.cz/"
+            }
+        ],
+        "description": "NotORM is a PHP library for simple working with data in the database.",
+        "homepage": "http://www.notorm.com/",
+        "keywords": [
+            "database",
+            "dbal"
         ]
     }
 ]

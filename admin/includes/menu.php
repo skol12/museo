@@ -29,12 +29,12 @@ if(!empty($_SESSION['User']['users_login'])) { ?>
 		<ul>
 
 			<?php
-			if(in_array($active, explode('/', $_SERVER['REQUEST_URI']))) { 
+			if(in_array($active, explode('/', $_SERVER['REQUEST_URI']))) {
 
 				foreach (${"menu_links_".$active} as $link) {
 					if($link['level_required'] <= @$_SESSION['User']['level']){
 						echo '<li';
-						if(in_array($link['active'], explode('/', $_SERVER['REQUEST_URI']))) echo ' class="pure-menu-selected" ';
+						if($subactive == $link['active']) echo ' class="pure-menu-selected" ';
 						echo '><a href="'.BASE_URL.$link['href'].'">'.$link['nom'].'</a>
 						</li>';
 					}
@@ -49,3 +49,4 @@ if(!empty($_SESSION['User']['users_login'])) { ?>
 
 
 <?php } ?>
+

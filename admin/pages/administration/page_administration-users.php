@@ -1,6 +1,7 @@
 <?php
 require_once('../../config.php');
 $active = "administration";
+$subactive = "user-liste";
 require_once('header.php');
 
 if(isset($_GET['action'])) {
@@ -15,14 +16,14 @@ if(isset($_GET['action'])) {
 		print alert_message("Utilisateur mis à jour", "secondary");
 	}
 	elseif($_GET['action'] == "add" && isset($_POST["action"])) {
-		$array = array( 
+		$array = array(
 			"users_login" => $_POST["users_login"],
 			"users_password" => $_POST["users_password"],
 			"users_mail" => $_POST["users_mail"],
 			"users_nom" => $_POST["users_nom"],
 			"users_prenom" => $_POST["users_prenom"],
 			"users_date" => $_POST["users_date"]
-			); 
+			);
 
 	if($db->users()->insert($array)) print alert_message("Utiliateur créé", "success");
 		else print alert_message("Erreur insertion");
@@ -85,7 +86,7 @@ elseif(isset($_GET['action']) && $_GET['action'] == "add") {
 
 
 	echo '
-	
+
 	<form class="pure-form pure-form-aligned" method="post" action="#">
 		<legend>Ajout utilisateur :</legend>
 			<input type="hidden" name="action" value="add">

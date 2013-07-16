@@ -1,6 +1,7 @@
 {
     "require": {
         "slim/slim": "2.*",
-        "vrana/notorm": "dev-master"
+        "vrana/notorm": "dev-master",
+        "sybio/image-workshop": "dev-master"
     }
 }

@@ -1,6 +1,7 @@
-<?php 
+<?php
     require_once('../config.php');
     $active = "exposition";
+    $subactive = "exposition";
     require_once('header.php');
 ?>
 

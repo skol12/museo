@@ -5,6 +5,7 @@
 	padding-right: 15px;
 	padding-bottom: 10px;
 	box-sizing: border-box;
+    width: 100%;
 }
 
 .pull-right {
@@ -141,10 +142,6 @@ dd {
  * Layout Styles
  * --------------------------
 */
-
-#main {
-    width: 100%;
-}
 
 
 /* Apply the .box class on the immediate parent of any grid element (pure-u-*) to apply some padding. */
@@ -390,4 +387,14 @@ aside {
 }
 thead{
     cursor: pointer;
+}
+
+p.titre{
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 1px solid silver;
+}
+
+textarea{
+    min-height: 80px;
 }
