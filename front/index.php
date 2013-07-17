@@ -1,8 +1,13 @@
-<?php
+<?php require 'header.php'; ?>
 
-require_once('config.php');
-$active = "nantes";
-require_once('header.php');
-?>
-Bienvenue sur le front office de MuseoTouch
+<center>
+<table>
+	<tr>
+		<td>
+			<img src="css/img/accueil.png" width="980"> 
+		</td>
+	</tr>
+</table>
+</center>
 
+<?php require 'footer.php'; ?>

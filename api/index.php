@@ -80,7 +80,7 @@ $app->get("/v1/objets/search", function () use ($app, $db) {
 /**
  * Ajout d'un objet dans le panier
  */
-$app->post("/v1/basket/add", function () use ($app, $db) {
+$app->post("/v1/paniers/add", function () use ($app, $db) {
 	$data = $app->request()->post(); //Récupération des paramètres POST
 	$token = $data['token'];
 	$objet_id = $data['objet_id'];
@@ -92,17 +92,17 @@ $app->post("/v1/basket/add", function () use ($app, $db) {
 /**
  * Récupération d'un panier
  */
-$app->post("/v1/basket", function () use ($app, $db) {
+$app->post("/v1/paniers", function () use ($app, $db) {
 	$data = $app->request()->post(); //Récupération des paramètres POST
 	$token = $data['token'];
 	$password = $data['password'];
-	$panier = $db->baskets()->where('baskets_valid', 1)->where('baskets_users_token', $token)->fetch();
+	$panier = $db->baskets()->where('paniers_valid', 1)->where('paniers_token', $token)->fetch();
 	if(!$panier) {
 		return json_encode(array(
 			"error_code" => '#1',
 			"error_msg" => "Le panier est vide"
 		));
-	} elseif($panier['baskets_private'] && $panier['baskets_password'] != $password) {
+	} elseif($panier['paniers_private'] && $panier['paniers_password'] != $password) {
 		return json_encode(array(
 			"error_code" => '#2',
 			"error_msg" => "Mauvais password"

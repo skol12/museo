@@ -132,9 +132,8 @@ elseif(isset($_GET['action']) && $_GET['action'] == "add") {
 
 } else { ?>
 
-<h1>Liste des utilisateurs</h1>
-
-<a href="?action=add" class="pure-button pure-button-small pure-button-secondary">Ajouter</a>&nbsp;
+<p class="titre">Liste des utilisateurs</p>
+	<a href="?action=add" class="pure-button pure-button-secondary pull-right">Ajouter</a>
 
 <table class="pure-table pure-table-horizontal">
 	<thead>
