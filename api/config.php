@@ -3,7 +3,6 @@
 require 'vendor/autoload.php';
 require_once('tools/fonctions.php');
 
-
 if(preg_match('/wamp/', $_SERVER['DOCUMENT_ROOT'])) {
 	define('DEBUG', true);
 	define('BASE_URL', '/museo/admin/');

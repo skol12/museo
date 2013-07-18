@@ -4,7 +4,18 @@ $active = "exposition";
 $subactive = "objet-liste";
 require_once('header.php');
 
-if(isset($_GET['action'])) {
+if(@$_POST['action'] == "add_props" && isset($_POST["objets_id"])) {
+	$array = array(
+		"objets_id" => $_POST["objets_id"],
+		"objets_props_nom_fr" => $_POST["objets_props_nom_fr"],
+		"objets_props_nom_en" => $_POST["objets_props_nom_en"],
+		"objets_props_value_fr" => $_POST["objets_props_value_fr"],
+		"objets_props_value_en" => $_POST["objets_props_value_en"],
+		);
+	if($db->objets_props()->insert($array)) print alert_message("Ajout de la propriété de l'objet", "success");
+	else print alert_message("Erreur insertion");
+
+} else if(isset($_GET['action'])) {
 	$uniqname = null;
 
 	if($_GET['action'] == "delete") {
@@ -84,13 +95,53 @@ echo '
 		<input type="file" name="objets_photo" id="objets_photo"/>
 	</div>
 
-<div class="pure-controls">
-<a href="'.$uri[0].'" class="pure-button pure-button-error">Retour</a>&nbsp;
-<button type="submit" class="pure-button pure-button-secondary">Modifier</button>
-</div>
+	<div class="pure-controls">
+		<a href="'.$uri[0].'" class="pure-button pure-button-error">Retour</a>&nbsp;
+		<button type="submit" class="pure-button pure-button-secondary">Modifier</button>
+	</div>
 </fieldset>
 
 </form>';
+
+echo '<hr>';
+echo '<div class="pure-g">';
+	echo '<div class="pure-u-1-2">';
+
+	echo '<p>Ajout une propriété à l\'objet :</p>';
+	echo '<form class="pure-form pure-form-aligned" method="post" action="#" enctype="multipart/form-data">';
+		echo '<input type="hidden" name="action" value="add_props">';
+		echo '<input type="hidden" name="objets_id" value="'.$objets['objets_id'].'">';
+
+		echo '<div class="pure-control-group">';
+			echo '<label for="objets_props_nom_fr">Nom Français</label>';
+			echo '<input type="text" id="objets_props_nom_fr" name="objets_props_nom_fr" class="pure-input-1-2" required placeholder="Nom français">';
+		echo '</div>';
+		echo '<div class="pure-control-group">';
+			echo '<label for="objets_props_nom_en">Nom Anglais</label>';
+			echo '<input type="text" id="objets_props_nom_en" name="objets_props_nom_en" class="pure-input-1-2" required placeholder="Nom Anglais">';
+		echo '</div>';
+
+		echo '<div class="pure-control-group">';
+			echo '<label for="objets_props_value_fr">Valeur Française</label>';
+			echo '<textarea id="objets_props_value_fr" class="pure-input-1-2" name="objets_props_value_fr" required placeholder="Valeur Française"></textarea>';
+		echo '</div>';
+		echo '<div class="pure-control-group">';
+			echo '<label for="objets_props_value_en">Valeur Anglaise</label>';
+			echo '<textarea id="objets_props_value_en" class="pure-input-1-2" name="objets_props_value_en" required placeholder="Valeur Anglaise"></textarea>';
+		echo '</div>';
+		echo '<div class="pure-controls"><button type="submit" class="pure-button pure-button-secondary">Ajouter</button></div>';
+	echo '</form>';
+	echo '</div>';
+echo '</div>';
+echo "<hr>";
+echo '<p>Liste des propriétés : </p>';
+foreach ($objets->objets_props() as $objets_props) {
+	echo "<b>Nom FR </b> : " . $objets_props['objets_props_nom_fr']."<br>";
+	echo "<b>Nom EN : </b>" . $objets_props['objets_props_nom_en']."<br>";
+	echo "<b>Valeur FR : </b>" . $objets_props['objets_props_value_fr']."<br>";
+	echo "<b>Valeur EN : </b>" . $objets_props['objets_props_value_en']."<br>";
+	echo "<hr>";
+}
 
 } elseif(isset($_GET['action']) && $_GET['action'] == "add") {
 
@@ -103,12 +154,12 @@ echo '
 	<fieldset >
 	<div class="pure-control-group">
 	<label for="nom">Nom Français</label>
-	<input type="text" id="nom" name="objets_nom_fr" class="pure-input-1-2" required placeholder="Nom français" value="Nom Français">
+	<input type="text" id="nom" name="objets_nom_fr" class="pure-input-1-2" required placeholder="Nom français">
 	</div>
 
 	<div class="pure-control-group">
 	<label for="nom">Nom Anglais</label>
-	<input type="text" id="nom" name="objets_nom_en" class="pure-input-1-2" required placeholder="Nom anglais" value="Nom Anglais">
+	<input type="text" id="nom" name="objets_nom_en" class="pure-input-1-2" required placeholder="Nom anglais">
 	</div>
 
 	<div class="pure-control-group">

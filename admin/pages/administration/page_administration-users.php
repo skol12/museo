@@ -45,32 +45,32 @@ $user = $db->users("users_id", $_GET['id'])->fetch(); //On refetch pour obtenir 
 	<fieldset >
 		<div class="pure-control-group">
 			<label for="login">Login</label>
-			<input type="text" id="login" name="users_login" required placeholder="Login" value="'.$user['users_login'].'">
+			<input type="text" id="login"  class="pure-input-1-2" name="users_login" required placeholder="Login" value="'.$user['users_login'].'">
 		</div>
 
 		<div class="pure-control-group">
 	        <label for="password">Mot de passe</label>
-	        <input type="password" id="password" name="users_password" required placeholder="Mot de passe.." value="'.$user['users_password'].'">
+	        <input type="password" id="password"  class="pure-input-1-2" name="users_password" required placeholder="Mot de passe.." value="'.$user['users_password'].'">
 		</div>
 
 		<div class="pure-control-group">
 			<label for="mail">Adresse e-mail</label>
-			<input type="text" id="mail" name="users_mail" required placeholder="Mail" value="'.$user['users_mail'].'">
+			<input type="text" id="mail"  class="pure-input-1-2" name="users_mail" required placeholder="Mail" value="'.$user['users_mail'].'">
 		</div>
 
 		<div class="pure-control-group">
 			<label for="nom">Nom</label>
-			<input type="text" id="nom" name="users_nom" required placeholder="Nom" value="'.$user['users_nom'].'">
+			<input type="text" id="nom"  class="pure-input-1-2" name="users_nom" required placeholder="Nom" value="'.$user['users_nom'].'">
 		</div>
 
 		<div class="pure-control-group">
 			<label for="prenom">Prenom</label>
-			<input type="text" id="prenom" name="users_prenom" required placeholder="Prenom" value="'.$user['users_prenom'].'">
+			<input type="text" id="prenom"  class="pure-input-1-2" name="users_prenom" required placeholder="Prenom" value="'.$user['users_prenom'].'">
 		</div>
 
 		<div class="pure-control-group">
 			<label for="date">Date de naissance</label>
-			<input type="text" id="date" name="users_date" required placeholder="Date" value="'.$user['users_date'].'">
+			<input type="text" id="date"  class="pure-input-1-2" name="users_date" required placeholder="Date" value="'.$user['users_date'].'">
 		</div>
 
 		<div class="pure-controls">
@@ -94,37 +94,37 @@ elseif(isset($_GET['action']) && $_GET['action'] == "add") {
 			<fieldset >
 				<div class="pure-control-group">
 					<label for="nom">Login</label>
-					<input type="text" id="nom" name="users_login" required placeholder="login" value="login">
+					<input type="text" id="nom"  class="pure-input-1-2" name="users_login" required placeholder="login" value="">
 				</div>
 
 				<div class="pure-control-group">
 					<label for="password">Password</label>
-					<input type="password" id="nom" name="users_password" required placeholder="password" value="Mot de passe">
+					<input type="password" id="nom"  class="pure-input-1-2" name="users_password" required placeholder="password" value="">
 				</div>
 
 				<div class="pure-control-group">
 					<label for="mail">Mail</label>
-					<input type="text" id="description" name="users_mail" required placeholder="Description française" value="Description Française">
+					<input type="text" id="description"  class="pure-input-1-2" name="users_mail" required placeholder="Description française" value="">
 				</div>
 
 				<div class="pure-control-group">
 					<label for="nom">Nom</label>
-					<input type="text" id="description" name="users_nom" required placeholder="Nom" value="Nom">
+					<input type="text" id="description"  class="pure-input-1-2" name="users_nom" required placeholder="Nom" value="">
 				</div>
 
 				<div class="pure-control-group">
 					<label for="prenom">Prenom</label>
-					<input type="text" id="description" name="users_prenom" required placeholder="Prenom" value="Prenom">
+					<input type="text" id="description"  class="pure-input-1-2" name="users_prenom" required placeholder="Prenom" value="">
 				</div>
 
 				<div class="pure-control-group">
 					<label for="date">Date de naissance</label>
-					<input type="text" id="description" name="users_date" required placeholder="Date" value="Date de naissance">
+					<input type="text" id="description"  class="pure-input-1-2" name="users_date" required placeholder="Date" value="">
 				</div>
 
 				<div class="pure-controls">
-					<a href="'.$uri[0].'" class="pure-button pure-button-small pure-button-error">Retour</a>&nbsp;
-					<button type="submit" class="pure-button pure-button-small  pure-button-secondary">Ajouter</button>
+					<a href="'.$uri[0].'" class="pure-button pure-button-error">Retour</a>&nbsp;
+					<button type="submit" class="pure-button pure-button-secondary">Ajouter</button>
 				</div>
 			</fieldset>
 

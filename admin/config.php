@@ -50,8 +50,19 @@ define('DIR_PHOTO_EXPOS', DIR_PHOTO."expositions/");
 				"nom" => 'Administration',
 				"href" => "administration",
 				"level_required" => 0,
-				"active" => 'administration' )
-				);
+				"active" => 'administration' ),
+		$link3 = array(
+				"nom" => 'Musee',
+				"href" => "musee",
+				"level_required" => 0,
+				"active" => 'musee'),
+		$link4 = array(
+				"nom" => 'Front Office',
+				"href" => "../front",
+				"level_required" => 0,
+				"active" => 'front' )
+				);		
+				
 
 	$menu_links_administration = array(
 		$link1 = array(
@@ -64,7 +75,14 @@ define('DIR_PHOTO_EXPOS', DIR_PHOTO."expositions/");
 				"href" => "administration/droits",
 				"level_required" => 0,
 				"active" => 'droit-liste' ),
+	);
 
+	$menu_links_musee = array(
+		$link1 = array(
+				"nom" => 'Musees',
+				"href" => "musee/musee-liste",
+				"level_required" => 0,
+				"active" => 'musee-liste') 
 	);
 
 	$menu_links_exposition = array(

@@ -90,21 +90,25 @@ echo '
 <div class="pure-control-group">
 <label for="description_en">Description Anglaise</label>
 <textarea id="description" class="pure-input-1-2" name="expositions_description_en" required placeholder="Description anglaise">'.$expositions['expositions_description_en'].'</textarea>
-</div>
+</div>';
 
-<div class="pure-control-group">
-<div class="pure-control-group">
-<label for="musee">Musée</label>
-<select name="expositions_musee" id="musee" class="pure-u-1-8">
-<option value="Lyon">Lyon</option>
-<option value="Nantes" ';
-if($expositions['expositions_musee'] == 'Nantes') echo "selected";
-echo '>Nantes</option>
-</select>
-</div>
-</div>
+echo create_liste_musees($expositions['expositions_musee']);
 
+
+
+/*'<div class="pure-control-group">
 <div class="pure-control-group">
+	<label for="musee">Musée</label>
+		<select name="expositions_musee" id="musee" class="pure-u-1-8">
+			<option value="Lyon">Lyon</option>
+			<option value="Nantes" ';
+				if($expositions['expositions_musee'] == 'Nantes') echo "selected";
+				echo '>Nantes</option>
+		</select>
+</div>
+</div>*/
+echo
+'<div class="pure-control-group">
 <label for="expositions_photo">Photo</label>
 <input type="file" name="expositions_photo" id="expositions_photo"/>
 </div>
@@ -144,12 +148,12 @@ echo '</div>';
 	<fieldset >
 	<div class="pure-control-group">
 	<label for="nom">Nom Français</label>
-	<input type="text" id="nom" class="pure-input-1-2" name="expositions_nom_fr" required placeholder="Nom français" value="Nom Français">
+	<input type="text" id="nom" class="pure-input-1-2" name="expositions_nom_fr" required placeholder="Nom français">
 	</div>
 
 	<div class="pure-control-group">
 	<label for="nom">Nom Anglais</label>
-	<input type="text" id="nom" class="pure-input-1-2" name="expositions_nom_en" required placeholder="Nom anglais" value="Nom Anglais">
+	<input type="text" id="nom" class="pure-input-1-2" name="expositions_nom_en" required placeholder="Nom anglais">
 	</div>
 
 	<div class="pure-control-group">
@@ -159,17 +163,16 @@ echo '</div>';
 	<div class="pure-control-group">
 	<label for="description_en">Description Anglaise</label>
 	<textarea id="description" class="pure-input-1-2" name="expositions_description_en" required placeholder="Description anglaise"></textarea>
-	</div>
+	</div>';
 
-	<div class="pure-control-group">
-	<label for="musee">Musée</label>
-	<select name="expositions_musee" id="musee" class="pure-u-1-8">
-	<option value="Lyon">Lyon</option>
-	<option value="Nantes">Nantes</option>
-	</select>
-	</div>
+	$musees = $db->musees("musees_id")->fetch();
 
-	<div class="pure-control-group">
+	echo '<div class="pure-control-group">';
+	echo '<div class="pure-control-group">';
+
+	echo create_liste_musees($musees['musees_id']);
+
+	echo '<div class="pure-control-group">
 	<label for="expositions_photo">Photo</label>
 	<input type="file" name="expositions_photo" id="expositions_photo"/>
 	</div>

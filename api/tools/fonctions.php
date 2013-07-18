@@ -82,6 +82,7 @@ function generate_expo_array($expo, $items = array()) {
 		"expo_id" => $expo['expositions_id'],
 		"expo_nom_fr" => $expo['expositions_nom_fr'],
 		"expo_nom_en" => $expo['expositions_nom_en'],
+		"expo_musee" => $expo['expositions_musee'],
 		//"expo_nom_fr" => $expo['expositions_nom_fr'],
 		"objets" => $items
 	);

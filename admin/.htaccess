@@ -14,6 +14,9 @@
   RewriteRule ^exposition$ pages/page_exposition.php [L,QSA]
   RewriteRule ^exposition/exposition-liste$ pages/exposition/exposition-liste.php [L,QSA]
   RewriteRule ^exposition/objet-liste$ pages/exposition/objet-liste.php [L,QSA]
+  
+  RewriteRule ^musee$ pages/page_musee.php [L,QSA]
+  RewriteRule ^musee/musee-liste$ pages/musee/musee-liste.php [L,QSA]
 
 
 

@@ -4,7 +4,7 @@
 
 function connect_pdo() {
 	try{
-	    $db=new PDO('mysql:host='.DB.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
+		$db=new PDO('mysql:host='.DB.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
 	}catch(Exception $e){
 		echo 'Erreur : '.$e->getMessage().'<br />';
 		echo 'N° : '.$e->getCode();
@@ -18,11 +18,11 @@ function connect_pdo() {
 function connect() {
 	//Customisation structure de la bdd
 	$structure = new NotORM_Structure_Convention(
-	    $primary = '%s_id',
-	    $foreign = '%s_id',
-	    $table = '%s',
-	    $prefix = ''
-	);
+		$primary = '%s_id',
+		$foreign = '%s_id',
+		$table = '%s',
+		$prefix = ''
+		);
 
 	return new NotORM(connect_pdo(), $structure);
 }
@@ -30,24 +30,24 @@ function connect() {
 
 
 function user_connexion($login, $password) {
-   $result = user_verif($login, $password);
+	$result = user_verif($login, $password);
 
-   if(!$result){
-	   session_destroy();
-	   setcookie("cookie_user","", time() - 3600);
-	   setcookie("cookie_password","", time() - 3600);
-	   return false;
-   } else {
-	   $expire = 365*24*3600;
-	   setcookie("cookie_user", $login, time()+$expire);
-	   setcookie("cookie_password", $password, time()+$expire);
-	   $_SESSION['User'] = array(
-		   'users_login' => $result['users_login'],
-		   'users_id' => $result['users_id'],
-		   'users_password' => $result['users_password']
-	   );
-	   return true;
-   }
+	if(!$result){
+		session_destroy();
+		setcookie("cookie_user","", time() - 3600);
+		setcookie("cookie_password","", time() - 3600);
+		return false;
+	} else {
+		$expire = 365*24*3600;
+		setcookie("cookie_user", $login, time()+$expire);
+		setcookie("cookie_password", $password, time()+$expire);
+		$_SESSION['User'] = array(
+			'users_login' => $result['users_login'],
+			'users_id' => $result['users_id'],
+			'users_password' => $result['users_password']
+			);
+		return true;
+	}
 }
 
 function user_verif($login, $password) {
@@ -75,10 +75,10 @@ function get_objets_dispo($expos_id) {
 		FROM objets
 		WHERE objets_valid = 1
 		AND objets_id NOT IN (
-		    SELECT objets_id
-		    FROM expositions_objets
-		    WHERE expositions_id = :expo_id
-		)'
+			SELECT objets_id
+			FROM expositions_objets
+			WHERE expositions_id = :expo_id
+			)'
 	);
 	$sth->bindValue('expo_id', $expos_id, PDO::PARAM_STR);
 	$sth->execute();
@@ -93,12 +93,25 @@ function get_objets_pasdispo($expos_id) {
 		FROM objets
 		WHERE objets_valid = 1
 		AND objets_id IN (
-		    SELECT objets_id
-		    FROM expositions_objets
-		    WHERE expositions_id = :expo_id
-		)'
+			SELECT objets_id
+			FROM expositions_objets
+			WHERE expositions_id = :expo_id
+			)'
 	);
 	$sth->bindValue('expo_id', $expos_id, PDO::PARAM_STR);
+	$sth->execute();
+	$db = null;
+	return $sth;
+}
+
+function get_musees() {
+	$db = connect_pdo();
+	$sth = $db->prepare('
+		SELECT musees_id, musees_nom
+		FROM musees
+		WHERE musees_valid = 1;
+		)'
+	);
 	$sth->execute();
 	$db = null;
 	return $sth;
@@ -107,13 +120,13 @@ function get_objets_pasdispo($expos_id) {
 function create_liste_objets_dispo($expos_id) {
 	$objets_dispo = get_objets_dispo($expos_id);
 	$html ='<div class="pure-control-group">';
-  		$html .= '<select name="objets_id" id="add_item">';
-  		if(!$objets_dispo->rowCount()) echo '<option value="0">Aucun objet</option>';
-  		while($objet = $objets_dispo->fetchObject()) {
-  			$html .='<option value="'.$objet->objets_id.'">'.$objet->objets_nom_fr.'</option>';
-  		}
-		$html .= '</select> ';
-		$html .= ' <button type="submit" class="pure-button pure-button-secondary">Ajouter</button>';
+	$html .= '<select name="objets_id" id="add_item">';
+	if(!$objets_dispo->rowCount()) echo '<option value="0">Aucun objet</option>';
+	while($objet = $objets_dispo->fetchObject()) {
+		$html .='<option value="'.$objet->objets_id.'">'.$objet->objets_nom_fr.'</option>';
+	}
+	$html .= '</select> ';
+	$html .= ' <button type="submit" class="pure-button pure-button-secondary">Ajouter</button>';
 	$html .= '</div>';
 	return $html;
 }
@@ -122,9 +135,25 @@ function create_liste_objets_dispo($expos_id) {
 function create_liste_objets_pasdispo($expos_id, $uri) {
 	$objets_dispo = get_objets_pasdispo($expos_id);
 	$html ='<ul>';
-  		while($objet = $objets_dispo->fetchObject()) {
-  			echo '<li><img src="'.DIR_PHOTO_OBJETS.'150/'.$objet->objets_photo.'" alt="" width="50" height="50" /> '.$objet->objets_nom_fr.'<a onclick="return(confirm(\'Etes-vous sûr de vouloir supprimer cette entrée?\'));" href="'.$uri.'?action=deleteObjet&id='.$objet->objets_id.'&id_expo='.$expos_id.'"> <i class="icon-remove"></i></a></li>';
-  		}
+	while($objet = $objets_dispo->fetchObject()) {
+		echo '<li><img src="'.DIR_PHOTO_OBJETS.'150/'.$objet->objets_photo.'" alt="" width="50" height="50" /> '.$objet->objets_nom_fr.'<a onclick="return(confirm(\'Etes-vous sûr de vouloir supprimer cette entrée?\'));" href="'.$uri.'?action=deleteObjet&id='.$objet->objets_id.'&id_expo='.$expos_id.'"> <i class="icon-remove"></i></a></li>';
+	}
 	$html .= '</ul>';
+	return $html;
+}
+
+function create_liste_musees($musees_nom) {
+	$musees = get_musees();
+	$html ='<div class="pure-control-group">';
+	$html .= '<label for="musees_id">Musée</label>';
+	$html .= '<select name="expositions_musee" id="musees_id">';
+	if(!$musees->rowCount()) echo '<option value="0">Aucun objet</option>';
+	while($musee = $musees->fetchObject()) {
+		$html .='<option value="'.$musee->musees_nom.'"';
+		if($musees_nom == $musee->musees_nom) $html .= " selected ";
+		$html .= '>'.$musee->musees_nom.'</option>';
+	}
+	$html .= '</select>';
+	$html .= '</div>';
 	return $html;
 }
